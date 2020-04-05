@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email', 'api_token', 'salary', 'social_status', 'occupation'
     ];
 
     /**
@@ -29,4 +29,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class, 'user_id');
+    }
 }
