@@ -21,3 +21,11 @@ $router->group(['prefix' => 'auth'], function () use ($router) {
 	// login 
 	$router->post('login', 'AuthController@login');
 });
+
+$router->group(['middleware' => 'auth'], function () use ($router) {
+	$router->get('expense', 'ExpenseController@index');
+	$router->post('expense', 'ExpenseController@store');
+	$router->delete('expense', 'ExpenseController@destroy');
+	$router->get('expense/{id}', 'ExpenseController@show');
+	$router->put('expense/{id}', 'ExpenseController@update');
+});
